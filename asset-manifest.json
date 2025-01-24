@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/qwerty/static/css/main.466635db.css",
+    "main.js": "/qwerty/static/js/main.9f370752.js",
+    "static/js/453.adc34edb.chunk.js": "/qwerty/static/js/453.adc34edb.chunk.js",
+    "static/media/shot.jpg": "/qwerty/static/media/shot.d89183592b1f0bc0db4b.jpg",
+    "index.html": "/qwerty/index.html",
+    "main.466635db.css.map": "/qwerty/static/css/main.466635db.css.map",
+    "main.9f370752.js.map": "/qwerty/static/js/main.9f370752.js.map",
+    "453.adc34edb.chunk.js.map": "/qwerty/static/js/453.adc34edb.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.466635db.css",
+    "static/js/main.9f370752.js"
+  ]
+}
