@@ -1,16 +1,23 @@
 {
   "files": {
-    "main.css": "/qwerty/static/css/main.c8a41718.css",
-    "main.js": "/qwerty/static/js/main.df26e276.js",
+    "main.css": "/qwerty/static/css/main.c80d2b86.css",
+    "main.js": "/qwerty/static/js/main.e1121855.js",
     "static/js/453.adc34edb.chunk.js": "/qwerty/static/js/453.adc34edb.chunk.js",
     "static/media/shot.jpg": "/qwerty/static/media/shot.d89183592b1f0bc0db4b.jpg",
+    "static/media/1.jpg": "/qwerty/static/media/1.3192ba0a2248c904db66.jpg",
+    "static/media/2.jpg": "/qwerty/static/media/2.83e901779045b01c4a73.jpg",
+    "static/media/5.jpg": "/qwerty/static/media/5.45c73ef1059d3b26dc1b.jpg",
+    "static/media/slick.svg": "/qwerty/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/qwerty/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/qwerty/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/qwerty/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/qwerty/index.html",
-    "main.c8a41718.css.map": "/qwerty/static/css/main.c8a41718.css.map",
-    "main.df26e276.js.map": "/qwerty/static/js/main.df26e276.js.map",
+    "main.c80d2b86.css.map": "/qwerty/static/css/main.c80d2b86.css.map",
+    "main.e1121855.js.map": "/qwerty/static/js/main.e1121855.js.map",
     "453.adc34edb.chunk.js.map": "/qwerty/static/js/453.adc34edb.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c8a41718.css",
-    "static/js/main.df26e276.js"
+    "static/css/main.c80d2b86.css",
+    "static/js/main.e1121855.js"
   ]
 }
