@@ -16,3 +16,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+/* Приклад (index.css чи global.css) */
+.custom-thumb-dots {
+  display: flex !important;
+  justify-content: center;
+  gap: 4rem;
+  margin-top: 1rem !important;
+}
+.custom-thumb-dots li {
+  width: auto;
+}
+.custom-thumb-dots li.slick-active img {
+  border-color: red; /* Колір рамки для активної мініатюри */
+  transform: scale(1.05);
+}
+
