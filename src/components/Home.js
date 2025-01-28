@@ -32,7 +32,7 @@ const Home = () => {
       {isMenuOpen && <div className="fixed inset-0 bg-black opacity-50 z-40" />}
 
       {/* Основний контент */}
-      <div className="relative z-10 text-center text-yellow-300 py-16">
+      <div className="relative z-10 text-center text-yellow-300 py-2">
         <h1 className="text-5xl font-bold mb-4">Тотальний розпродаж...</h1>
         <h2 className="text-5xl text-red-600 font-bold mb-4">Знижки до -50%</h2>
         <p className="text-4xl font-mono mb-8">Зброя без дозволу тільки тут</p>

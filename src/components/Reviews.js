@@ -1,14 +1,13 @@
-import React from 'react';
+// src/components/Reviews.js
+import React, { useMemo } from 'react';
 import Slider from 'react-slick';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
-// Ліниве завантаження (зображення)
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-// Стилі для slick
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-// Приклад зображень
+// Зображення (переконайтеся, що шляхи вірні!)
 import reviewImg1 from '../img/1.jpg';
 import reviewImg2 from '../img/2.jpg';
 import reviewImg3 from '../img/3.jpg';
@@ -17,7 +16,7 @@ import reviewImg5 from '../img/5.jpg';
 import reviewImg6 from '../img/6.jpg';
 import reviewImg7 from '../img/7.jpg';
 
-// Масив відгуків
+// Масив відгуків (дані)
 const reviewsData = [
   {
     id: 1,
@@ -63,7 +62,7 @@ const reviewsData = [
   },
 ];
 
-// Кастомна стрілка «Назад»
+// Кастомні стрілки
 const PrevArrow = ({ className, onClick }) => (
   <button
     className={`
@@ -73,13 +72,12 @@ const PrevArrow = ({ className, onClick }) => (
       transition-colors duration-300
     `}
     onClick={onClick}
-    aria-label="Previous"
+    aria-label="Previous slide"
   >
     <FaArrowLeft />
   </button>
 );
 
-// Кастомна стрілка «Вперед»
 const NextArrow = ({ className, onClick }) => (
   <button
     className={`
@@ -89,53 +87,56 @@ const NextArrow = ({ className, onClick }) => (
       transition-colors duration-300
     `}
     onClick={onClick}
-    aria-label="Next"
+    aria-label="Next slide"
   >
     <FaArrowRight />
   </button>
 );
 
+// Налаштування слайдера
+const sliderSettings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  fade: true,
+  autoplay: true,
+  autoplaySpeed: 3000,
+  arrows: true,
+  prevArrow: <PrevArrow />,
+  nextArrow: <NextArrow />,
+  swipeToSlide: true,
+  responsive: [
+    {
+      breakpoint: 768,
+      settings: {
+        arrows: false,
+      },
+    },
+  ],
+};
+
+// Основний компонент
 const Reviews = () => {
-  // Кастомний контент для dots (мініатюри)
-  const customPaging = (i) => {
-    const review = reviewsData[i];
-    return (
+  const customPaging = useMemo(
+    () => (i) => (
       <div className="w-16 h-16 p-1">
         <LazyLoadImage
-          src={review.image}
+          src={reviewsData[i].image}
           alt={`Thumbnail ${i}`}
           effect="blur"
           className="w-full h-full object-cover rounded-md"
         />
       </div>
-    );
-  };
+    ),
+    []
+  );
 
-  // Налаштування слайдера
   const settings = {
-    dots: true,              // Відображати «точки» (dots)
-    customPaging: customPaging,  // Використовуємо кастомні мініатюри
+    ...sliderSettings,
+    customPaging,
     dotsClass: 'slick-dots custom-thumb-dots',
-    infinite: true,          // Безкінечна прокрутка
-    speed: 500,              // Швидкість анімації
-    slidesToShow: 1,         // Тільки один слайд одночасно
-    slidesToScroll: 1,
-    fade: true,              // Плавне розчинення між слайдами
-    autoplay: true,          // Автопрокручування
-    arrows: true,            // Показуємо стрілки
-    prevArrow: <PrevArrow />,
-    nextArrow: <NextArrow />,
-    swipeToSlide: true,      // Дозволяємо свайп
-    responsive: [
-      {
-        breakpoint: 768,        // Для мобільних екранів
-        settings: {
-          slidesToShow: 1,      // 1 слайд для мобільних
-          slidesToScroll: 1,
-          arrows: false,        // Вимикаємо стрілки, хай гортають свайпом
-        },
-      },
-    ],
   };
 
   return (
@@ -145,8 +146,7 @@ const Reviews = () => {
       <Slider {...settings}>
         {reviewsData.map((review) => (
           <div key={review.id} className="px-2">
-            <div className="bg-white rounded-lg shadow-lg p-6 flex flex-col md:flex-row items-center">
-              {/* Зображення зліва */}
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 flex flex-col md:flex-row items-center">
               <div className="md:w-1/2 w-full mb-4 md:mb-0">
                 <LazyLoadImage
                   src={review.image}
@@ -155,10 +155,13 @@ const Reviews = () => {
                   className="w-full h-auto rounded"
                 />
               </div>
-              {/* Опис справа */}
               <div className="md:w-1/2 w-full md:pl-6 text-center md:text-left">
-                <h3 className="text-2xl font-semibold mb-3">{review.title}</h3>
-                <p className="text-gray-700">{review.description}</p>
+                <h3 className="text-2xl font-semibold mb-3 dark:text-white">
+                  {review.title}
+                </h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  {review.description}
+                </p>
               </div>
             </div>
           </div>

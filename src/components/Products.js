@@ -1,47 +1,93 @@
-// src/components/Products.js
+import React, { useState } from 'react'; // Importing React and useState hook
 
-import React from 'react';
-import Reviews from './Reviews';
 
-// Імпортуємо зображення з папки src/img
+
+// Example image imports
 import coldGun1 from '../img/B1-4P/1.jpg';
 import coldGun2 from '../img/B1-4P/1.jpg';
-import pneumatic1 from '../img/B1-4P/1.jpg';
-import pneumatic2 from '../img/B1-4P/1.jpg';
-import rifle1 from '../img/B1-4P/1.jpg';
-import automatic1 from '../img/B1-4P/1.jpg';
-import bow1 from '../img/B1-4P/1.jpg';
-import crossbow1 from '../img/B1-4P/1.jpg';
-import holster1 from '../img/B1-4P/1.jpg';
-import cleaning1 from '../img/B1-4P/1.jpg';
-import knife1 from '../img/B1-4P/1.jpg';
-import knife2 from '../img/B1-4P/1.jpg';
+// ... other imports
 
-// Компонент для відображення окремої картки товару
-const ProductCard = ({ title, image, description }) => (
-  <div className="product-card bg-white shadow-lg p-4 rounded-lg">
-    <img
-      src={image}
-      alt={title}
-      className="w-full h-40 object-cover rounded-md mb-4"
-    />
-    <h3 className="text-xl font-bold">{title}</h3>
-    <p>{description}</p>
-    <div className="flex justify-between mt-4">
-      <button className="bg-green-500 text-white py-2 px-4 rounded-lg">
-        Замовити
-      </button>
-      <button className="bg-blue-500 text-white py-2 px-4 rounded-lg">
-        Детальніше
-      </button>
+const ProductCard = ({
+  title,
+  image,
+  imageHover,
+  description,
+  price,
+  oldPrice,
+}) => {
+  // State for hover effect
+  const [isHovered, setIsHovered] = useState(false);
+
+  // Functions to handle mouse hover
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
+  // Calculate discount percentage if old price exists
+  const discountPercentage = oldPrice
+    ? Math.round(((oldPrice - price) / oldPrice) * 100)
+    : 0;
+
+  return (
+    <div
+      className="product-card bg-white shadow-lg rounded-lg overflow-hidden relative transition-all duration-300 hover:scale-105 hover:shadow-xl"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      {/* Display the image, changing on hover */}
+      <img
+        src={isHovered ? imageHover : image}
+        alt={title}
+        className="w-full h-64 object-cover rounded-t-lg mb-4 transition-transform duration-300 transform hover:scale-110"
+      />
+
+      <div className="px-6 pb-6">
+        {/* Product title */}
+        <h3 className="text-2xl font-semibold text-center text-gray-800 mb-2">
+          {title}
+        </h3>
+
+        {/* Product description */}
+        <p className="text-sm text-gray-600 text-center mb-4">{description}</p>
+
+        {/* Price information */}
+        <div className="flex justify-center items-center space-x-3 mb-4">
+          {/* Old price */}
+          {oldPrice && (
+            <span className="text-sm text-gray-500 line-through">
+              {oldPrice} грн.
+            </span>
+          )}
+
+          {/* New price */}
+          <span className="text-xl font-bold text-red-600">{price} грн.</span>
+
+          {/* Discount percentage */}
+          {oldPrice && (
+            <span className="text-sm text-green-600">{`- ${discountPercentage}%`}</span>
+          )}
+        </div>
+
+        {/* Action buttons */}
+        <div className="flex justify-between px-4 pb-4">
+          <button className="bg-slate-950 text-white py-2 px-6 rounded-lg transition-transform duration-200 hover:scale-105">
+            Детальніше
+          </button>
+          <button className="bg-white text-black border py-2 px-6 rounded-lg transition-transform duration-200 hover:scale-105">
+            Замовити
+          </button>
+        </div>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
-// Основний компонент, що відображає всі секції з товарами,
-// а також підключає компонент Reviews у кінці
+// Main Products component
 const Products = () => {
-  // Масив секцій з товарами
   const sections = [
     {
       id: 'cold-guns',
@@ -50,109 +96,22 @@ const Products = () => {
         {
           title: 'Пістолет Cold 1',
           image: coldGun1,
+          imageHover: coldGun2,
           description: 'Короткий опис пістолета 1',
+          price: 5150,
+          oldPrice: 6900,
         },
-        {
-          title: 'Пістолет Cold 2',
-          image: coldGun2,
-          description: 'Короткий опис пістолета 2',
-        },
+        // Additional products...
       ],
     },
-    {
-      id: 'pneumatic-guns',
-      title: 'Пневматичні пістолети',
-      products: [
-        {
-          title: 'Пістолет Pneumatic 1',
-          image: pneumatic1,
-          description: 'Опис пневматичного пістолета 1',
-        },
-        {
-          title: 'Пістолет Pneumatic 2',
-          image: pneumatic2,
-          description: 'Опис пневматичного пістолета 2',
-        },
-      ],
-    },
-    {
-      id: 'rifles-and-automatics',
-      title: 'Гвинтівки та Автомати',
-      products: [
-        {
-          title: 'Гвинтівка Rifle 1',
-          image: rifle1,
-          description: 'Опис гвинтівки 1',
-        },
-        {
-          title: 'Автомат Automatic 1',
-          image: automatic1,
-          description: 'Опис автомата 1',
-        },
-      ],
-    },
-    {
-      id: 'bows-and-crossbows',
-      title: 'Луки та арбалети',
-      products: [
-        {
-          title: 'Лук Bow 1',
-          image: bow1,
-          description: 'Опис лука 1',
-        },
-        {
-          title: 'Арбалет Crossbow 1',
-          image: crossbow1,
-          description: 'Опис арбалета 1',
-        },
-      ],
-    },
-    {
-      id: 'holsters',
-      title: 'Кобури, догляд та інші',
-      products: [
-        {
-          title: 'Кобура Holster 1',
-          image: holster1,
-          description: 'Опис кобури 1',
-        },
-        {
-          title: 'Засіб догляду Cleaning 1',
-          image: cleaning1,
-          description: 'Опис засобу догляду',
-        },
-      ],
-    },
-    {
-      id: 'knives',
-      title: 'Ножі',
-      products: [
-        {
-          title: 'Ніж Knife 1',
-          image: knife1,
-          description: 'Опис ножа 1',
-        },
-        {
-          title: 'Ніж Knife 2',
-          image: knife2,
-          description: 'Опис ножа 2',
-        },
-      ],
-    },
+    // Additional sections...
   ];
 
   return (
     <div>
-      {/* Рендеримо кожну секцію з товарами */}
       {sections.map((section) => (
-        <div
-          key={section.id}
-          id={section.id} // для прокрутки з бокового меню
-          className="container mx-auto py-16"
-        >
-          <h2 className="text-3xl font-bold mb-8 text-center">
-            {section.title}
-          </h2>
+        <div key={section.id} id={section.id} className="container mx-auto py-8">
+          <h2 className="text-3xl font-bold mb-8 text-center">{section.title}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             {section.products.map((product, index) => (
               <ProductCard key={index} {...product} />
@@ -161,8 +120,7 @@ const Products = () => {
         </div>
       ))}
 
-      {/* Підключаємо компонент із слайдером відгуків */}
-      <Reviews />
+      
     </div>
   );
 };
