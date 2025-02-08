@@ -3,6 +3,7 @@ import Home from './components/Home';
 import Products from './components/Products';
 import Reviews from './components/Reviews';
 import OrderForm from './components/OrderForm';
+import OrderModal from './components/OrderModal';
 
 
 const App = () => {
@@ -12,6 +13,7 @@ const App = () => {
       <Products/>
       <Reviews/>
       <OrderForm/>
+      <OrderModal/>
     </div>
   );
 };

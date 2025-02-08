@@ -44,9 +44,9 @@ function OrderForm({
   };
 
   return (
-    <section className="py-4 bg-white">
+    <section className="py-8 bg-white">
       <div className="container mx-auto max-w-lg">
-        <h2 className="text-3xl font-bold mb-8 text-center">{heading}</h2>
+        <h2 className="text-3xl font-bold mt-10 mb-8 text-center">{heading}</h2>
 
         {success && (
           <p className="text-green-500 text-center mb-4">

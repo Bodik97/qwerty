@@ -31,3 +31,70 @@ code {
   transform: scale(1.05);
 }
 
+.modal-transition {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.modal-transition-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+@keyframes colorChange {
+  0% {
+    background-color: white;
+    color: black;
+  }
+  50% {
+    background-color: #d1d1d1; /* Світло-сірий фон */
+    color: black;
+  }
+  100% {
+    background-color: #a1a1a1; /* Темніше сірий фон */
+    color: white;
+  }
+}
+
+.animate-colorChange {
+  animation: colorChange 4s infinite alternate; /* 4 секунди для одного циклу */
+}
+/* Приклад стилів для кастомних точок */
+.custom-thumb-dots {
+  position: absolute;
+  bottom: 5px; /* регулюйте це значення для розташування точок ближче або далі від слайдера */
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex !important;
+  justify-content: center;
+}
+
+.custom-thumb-dots li {
+  margin: 0 1px; /* регулюйте відступи між точками */
+}
+
+.custom-thumb-dots li button {
+  border: none;
+  background: transparent;
+}
+/* Додайте цей код до вашого CSS файлу (наприклад, global.css) або у <style> тег у компоненті */
+@keyframes colorFlow {
+  0%, 100% {
+    background-color: #111111;
+  }
+  75% {
+    background-color: #0f172a;
+  }
+  50% {
+    background-color: #2d3748;
+  }
+  
+}
+
+.animate-colorFlow {
+  animation: colorFlow 6s ease-in-out infinite;
+}
+
